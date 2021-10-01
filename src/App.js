@@ -1,13 +1,11 @@
-// import ReactSelect from "./Components/React-select/ReacySelect";
-import Memoized from "./Components/HOOKS/UseMemo/Memoized";
+import LifeCycleMethod from "./Components/13LifeCycle_method/LifeCycleMethod";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      {/* <ReactSelect /> */}
-      <Memoized />
+      <LifeCycleMethod />
     </div>
   );
-}
+};
 
 export default App;

@@ -6,24 +6,24 @@ import "./index.css";
 let time = new Date(2020, 9, 9, 1);
 let hrs = time.getHours();
 let greeting = "";
-let csstyle = {};
+let cssStyle = {};
 
 if (hrs >= 1 && hrs <= 11) {
   greeting = "Good Morning";
-  csstyle.color = "green";
+  cssStyle.color = "green";
 }
 if (hrs >= 12 && hrs <= 17) {
   greeting = "Good Afternoon";
-  csstyle.color = "purple";
+  cssStyle.color = "purple";
 }
 if (hrs >= 18 && hrs <= 23) {
   greeting = "Good Night";
-  csstyle.color = "red";
+  cssStyle.color = "red";
 }
 
 let heading = {
   color: "blue",
-  textTransform: "capitilize",
+  textTransform: "capitalize",
   textAlign: "center",
   backgroundColor: "yellow",
   width: "600px",
@@ -37,7 +37,7 @@ let heading = {
 ReactDom.render(
   <>
     <h1 style={heading}>
-      Hello Sir, <span style={csstyle}> {greeting}</span>
+      Hello Sir, <span style={cssStyle}> {greeting}</span>
     </h1>
   </>,
   document.getElementById("root")

@@ -1,15 +1,8 @@
 import React, { useState } from "react";
-// In this as we sub,it then only values will dipslapyed
-const App = () => {
+
+const Form4 = () => {
   //Hooks
   const [Details, setDetails] = useState({
-    fname: "",
-    lname: "",
-    email: "",
-    mob: "",
-  });
-
-  const [Details2, setDetails2] = useState({
     fname: "",
     lname: "",
     email: "",
@@ -22,26 +15,25 @@ const App = () => {
     setDetails((prev) => {
       console.log(prev);
       return {
-        ...prev, // spread Opertors
-        [name]: value,
-        // name: value,  if we dont use the [] for name then it will create a key name of name and adde the value but we want the [name] key whose name is fname or lname put the value in it thast why we used []
+        ...prev, // spread Operators  so the old value will be as same as it was
+        [name]: value,  // only new value get updated.
       };
     });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setDetails2(Details);
+    alert("Done");
   };
   return (
     <>
       <div className="center">
         <form onSubmit={onSubmit}>
           <h1 className="heading">
-            Hello {Details2.fname} {Details2.lname}
+            Hello {Details.fname} {Details.lname}
           </h1>
-          <p>{Details2.email}</p>
-          <p>{Details2.mob}</p>
+          <p>{Details.email}</p>
+          <p>{Details.mob}</p>
           <input
             type="text"
             placeholder="Enter Your FirstName"
@@ -81,6 +73,6 @@ const App = () => {
   );
 };
 
-export default App;
+export default Form4;
 
 // In input we have to call the onChange must
