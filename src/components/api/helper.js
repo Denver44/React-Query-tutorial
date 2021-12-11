@@ -1,12 +1,12 @@
-import axios from "components/api/axios";
+import axios from "axios";
 
-const fetchPeople = async () => {
-  const response = await axios.get("/people/");
+const fetchPeople = async (url) => {
+  const response = await axios.get(url);
   return response;
 };
 
-const fetchSpecies = async () => {
-  const response = await axios.get("/species/");
+const fetchSpecies = async (url) => {
+  const response = await axios.get(url);
   return response;
 };
 
