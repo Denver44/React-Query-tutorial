@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { fetchPosts } from "components/api/helper";
 import PostDetail from "components/PostDetail/PostDetail";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
+
 import { Spinner, Alert } from "reactstrap";
 
 const maxPostPage = 10;
@@ -15,8 +16,20 @@ const Posts = () => {
     () => fetchPosts(currentPage),
     {
       staleTime: 2000,
+      keepPreviousData: true, // To keep the data in cache if somebody goes back to the page
     }
   );
+
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (currentPage < maxPostPage) {
+      const nextPage = currentPage + 1;
+      queryClient.prefetchQuery(["posts", nextPage], () =>
+        fetchPosts(nextPage)
+      );
+    }
+  }, [currentPage, queryClient]);
 
   useEffect(() => {
     if (data?.data) setData(data.data);

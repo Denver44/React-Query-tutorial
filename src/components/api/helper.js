@@ -11,12 +11,12 @@ async function fetchComments(postId) {
 }
 
 async function deletePost(postId) {
-  const response = await axios.delete(`/postId/${postId}`);
+  const response = await axios.delete(`/posts/${postId}`);
   return response;
 }
 
 async function updatePost(postId, body = { title: "REACT QUERY FOREVER!!!!" }) {
-  const response = await axios.put(`/postId/${postId}`, body);
+  const response = await axios.put(`/posts/${postId}`, body);
   return response;
 }
 
