@@ -5,8 +5,12 @@ import { Spinner, Alert } from "reactstrap";
 
 const PostDetail = ({ post }) => {
   const [comments, setComments] = useState([]);
-  const { data, isLoading, isError, error } = useQuery(`post-${post.id}`, () =>
-    fetchComments(post.id)
+  // const { data, isLoading, isError, error } = useQuery(`post-${post.id}`, () =>
+  //   fetchComments(post.id)
+  // );
+  const { data, isLoading, isError, error } = useQuery(
+    ["comments", post.id],
+    () => fetchComments(post.id)
   );
 
   useEffect(() => {

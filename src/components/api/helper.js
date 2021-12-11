@@ -1,7 +1,7 @@
 import axios from "components/api/axios";
 
-async function fetchPosts() {
-  const response = await axios.get("/posts?_limit=10&_page=0");
+async function fetchPosts(pageNo) {
+  const response = await axios.get(`/posts?_limit=10&_page=${pageNo}`);
   return response;
 }
 
