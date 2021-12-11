@@ -2,7 +2,11 @@ import { useState, useEffect } from "react";
 import { fetchPosts } from "components/api/helper";
 import PostDetail from "components/PostDetail/PostDetail";
 import { useQuery } from "react-query";
-import { Spinner } from "reactstrap";
+import { Spinner, Alert } from "reactstrap";
+
+const ErrorState = ({ error }) => (
+  <Alert variant={"info"}>{error.toString()}</Alert>
+);
 
 const maxPostPage = 10;
 
@@ -10,11 +14,19 @@ const Posts = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedPost, setSelectedPost] = useState(null);
   const [Data, setData] = useState([]);
-  const { data, isError, isLoading } = useQuery("posts", fetchPosts);
+  const { data, isError, error, isLoading } = useQuery("posts", fetchPosts, {
+    staleTime: 2000,
+  });
 
   useEffect(() => {
     if (data?.data) setData(data.data);
-  }, [data]);
+    if (isError)
+      setData([
+        {
+          title: "Error Orccured",
+        },
+      ]);
+  }, [data, isError]);
 
   if (isLoading) {
     return <Spinner animation="border" />;
@@ -22,6 +34,7 @@ const Posts = () => {
 
   return (
     <>
+      {isError && <ErrorState error={error} />}
       <ul>
         {Data.map((post) => (
           <li
