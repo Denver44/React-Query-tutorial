@@ -4,10 +4,6 @@ import PostDetail from "components/PostDetail/PostDetail";
 import { useQuery } from "react-query";
 import { Spinner, Alert } from "reactstrap";
 
-const ErrorState = ({ error }) => (
-  <Alert variant={"info"}>{error.toString()}</Alert>
-);
-
 const maxPostPage = 10;
 
 const Posts = () => {
@@ -20,21 +16,17 @@ const Posts = () => {
 
   useEffect(() => {
     if (data?.data) setData(data.data);
-    if (isError)
-      setData([
-        {
-          title: "Error Orccured",
-        },
-      ]);
-  }, [data, isError]);
+  }, [data]);
 
   if (isLoading) {
     return <Spinner animation="border" />;
   }
+  if (isError) {
+    return <Alert variant={"info"}>{error.toString()}</Alert>;
+  }
 
   return (
     <>
-      {isError && <ErrorState error={error} />}
       <ul>
         {Data.map((post) => (
           <li
