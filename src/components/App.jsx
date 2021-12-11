@@ -1,7 +1,7 @@
-import { Posts } from "./Posts";
-import "./App.css";
+import Posts from "components/Post/Posts";
+import "components/style/App.css";
 
-function App() {
+const App = () => {
   return (
     // provide React Query client to App
     <div className="App">
@@ -9,6 +9,6 @@ function App() {
       <Posts />
     </div>
   );
-}
+};
 
 export default App;

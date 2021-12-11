@@ -21,21 +21,11 @@ async function updatePost(postId) {
   return response.json();
 }
 
-export function PostDetail({ post }) {
-  // replace with useQuery
-  const data = [];
-
-  return (
-    <>
-      <h3 style={{ color: "blue" }}>{post.title}</h3>
-      <button>Delete</button> <button>Update title</button>
-      <p>{post.body}</p>
-      <h4>Comments</h4>
-      {data.map((comment) => (
-        <li key={comment.id}>
-          {comment.email}: {comment.body}
-        </li>
-      ))}
-    </>
+async function fetchPosts() {
+  const response = await fetch(
+    "https://jsonplaceholder.typicode.com/posts?_limit=10&_page=0"
   );
+  return response.json();
 }
+
+export { updatePost, deletePost, fetchComments, fetchPosts };
